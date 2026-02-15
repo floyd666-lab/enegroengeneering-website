@@ -1,0 +1,145 @@
+:root {
+    --bg-color: #FFFFFF;
+    --accent-blue: #007BFF;
+    --accent-red: #DC3545;
+    --text-color: #000000;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --text-color: #FFFFFF;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+}
+
+a:hover {
+    color: var(--accent-red);
+    transform: scale(1.05);
+}
+
+.cta-button {
+    background: var(--accent-red);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    animation: carouselSlide 10s infinite;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: transform 0.5s;
+}
+
+@keyframes carouselSlide {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-100%); }
+    66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+.accordion summary {
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.accordion summary:hover {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery img {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: rotateY(10deg) scale(1.1); /* 3D эффект */
+    perspective: 1000px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.contact-form input, .contact-form button {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+
+.cert-viewer {
+    position: relative;
+}
+
+.zoomable {
+    cursor: zoom-in;
+    transition: transform 0.3s;
+}
+
+.zoomable:hover {
+    transform: scale(1.5);
+}
+
+.cert-viewer::before { /* Overlay для предотвращения скачивания */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
